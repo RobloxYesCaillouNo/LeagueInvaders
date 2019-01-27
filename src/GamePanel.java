@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont = new Font("Arial", Font.BOLD, 48);
 	Font enterFont = new Font("Arial", Font.ITALIC, 28);
 	Font inFont = new Font("Arial", Font.ITALIC, 28);
+//	-------------------------------------------------------
 	Font gameoverFont = new Font("Arial", Font.BOLD, 48);
 	Font enemyFont = new Font("Arial", Font.ITALIC, 28);
 	Font retryFont = new Font("Arial", Font.ITALIC, 28);
@@ -63,11 +64,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, 500, 800);
 		g.setFont(gameoverFont);
-		g.drawString("Game Over", 24, 211);
+		g.setColor(Color.BLACK);
+		g.drawString("Game Over", 113, 200);
 		g.setFont(enemyFont);
-		g.drawString("You killed 0 enemies", 111, 350);
+		g.drawString("You killed 0 enemies", 120, 350);
 		g.setFont(retryFont);
-		g.drawString("Press ENTER to restart", 70, 500);
+		g.drawString("Press ENTER to restart", 103, 505);
 
 	}
 
