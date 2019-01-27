@@ -17,10 +17,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
-	Font titleFont = new Font("Arial", Font.BOLD, 48);
+	Font titleFont = new Font("Roboto", Font.BOLD, 48);
 	Font enterFont = new Font("Arial", Font.ITALIC, 28);
 	Font inFont = new Font("Arial", Font.ITALIC, 28);
-	Font gameoverFont = new Font("Arial", Font.BOLD, 48);
+	Font gameoverFont = new Font("Roboto", Font.BOLD, 48);
 	Font enemyFont = new Font("Arial", Font.ITALIC, 28);
 	Font retryFont = new Font("Arial", Font.ITALIC, 28);
 
@@ -118,7 +118,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState++;
 			}
 		}
+		else if (e.getKeyCode() == 37) {
+			
+		
 	}
+		else if(e.getKeyCode() == 39) {
+			
+		}
+	}
+
 
 	@Override
 	public void keyReleased(KeyEvent e) {
