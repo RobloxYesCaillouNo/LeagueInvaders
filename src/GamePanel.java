@@ -12,6 +12,7 @@ import javax.swing.Timer;
 //stuff for the game
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer = new Timer(1000 / 60, this);
+	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
@@ -38,7 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void updateGameState() {
-
+		rocketship.update();
 	}
 
 	public void updateEndState() {
@@ -60,6 +61,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 500, 800);
+		rocketship.draw(g);
 	}
 
 	public void drawEndState(Graphics g) {
@@ -110,6 +112,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println(e.getKeyCode());
 		if (e.getKeyCode() == 10) {
 
 			if (currentState == END_STATE) {
