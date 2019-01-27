@@ -20,9 +20,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont = new Font("Arial", Font.BOLD, 48);
 	Font enterFont = new Font("Arial", Font.ITALIC, 28);
 	Font inFont = new Font("Arial", Font.ITALIC, 28);
-	/*
-	 * _________________________________________________________
-	 */
 	Font gameoverFont = new Font("Arial", Font.BOLD, 48);
 	Font enemyFont = new Font("Arial", Font.ITALIC, 28);
 	Font retryFont = new Font("Arial", Font.ITALIC, 28);
