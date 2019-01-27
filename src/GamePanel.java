@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+//stuff for the game
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer = new Timer(1000 / 60, this);
 	final int MENU_STATE = 0;
@@ -21,13 +22,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	/*
 	 * _________________________________________________________
 	 */
-
 	Font gameoverFont = new Font("Arial", Font.BOLD, 48);
 	Font enemyFont = new Font("Arial", Font.ITALIC, 28);
 	Font retryFont = new Font("Arial", Font.ITALIC, 28);
 
 	public GamePanel() {
-
 	}
 
 	public void startGame() {

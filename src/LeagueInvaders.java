@@ -1,12 +1,11 @@
-
-//Run this one! : >
+//This is the main class
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
 public class LeagueInvaders {
 	JFrame window = new JFrame();
-
+	
 	final int WIDTH = 500;
 	final int HEIGHT = 800;
 	GamePanel gamePanel = new GamePanel();
