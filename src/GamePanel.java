@@ -117,16 +117,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			} else {
 				currentState++;
 			}
-		}
-		else if (e.getKeyCode() == 37) {
-			
-		
-	}
-		else if(e.getKeyCode() == 39) {
-			
-		}
-	}
+		} else if (e.getKeyCode() == 37) {
+			rocketship.x--;
 
+		} else if (e.getKeyCode() == 39) {
+			rocketship.x++;
+		}
+	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
