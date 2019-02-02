@@ -13,6 +13,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer = new Timer(1000 / 60, this);
 	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
+	ObjectManager objectmanager = new ObjectManager(rocketship);
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
@@ -36,7 +37,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void updateGameState() {
-		rocketship.update();
+		objectmanager.update();
+		objectmanager.manageEnemies();
 	}
 
 	public void updateEndState() {
@@ -58,7 +60,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 500, 800);
-		rocketship.draw(g);
+		objectmanager.draw(g);
 	}
 
 	public void drawEndState(Graphics g) {
@@ -118,10 +120,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState++;
 			}
 		} else if (e.getKeyCode() == 37) {
-			rocketship.x--;
+			rocketship.x -= rocketship.speed;
 
 		} else if (e.getKeyCode() == 39) {
-			rocketship.x++;
+			rocketship.x += rocketship.speed;
+		} else if (e.getKeyCode() == 32) {
+			objectmanager.addProjectile(new Projectile(rocketship.x, rocketship.y, 10, 10));
 		}
 	}
 
