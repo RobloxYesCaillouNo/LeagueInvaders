@@ -74,6 +74,7 @@ public class ObjectManager {
 				rocketship.isAlive = false;
 
 			}
+		}
 			for (int i = 0; i < alienlist.size(); i++) {
 				for (int j = 0; j < projlist.size(); j++) {
 					if (alienlist.get(i).collisionBox.intersects(projlist.get(i).collisionBox)) {
@@ -83,7 +84,8 @@ public class ObjectManager {
 					}
 				}
 			}
-		}
+		
+
 	}
 
 }
