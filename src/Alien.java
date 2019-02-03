@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class Alien extends GameObject {
 	boolean direction = true;
-
+	int number = 6;
 	public Alien(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
@@ -17,11 +17,11 @@ public class Alien extends GameObject {
 			direction = true;
 		}
 		if (direction == true) {
-			y = y + 7;
-			x = x + 7;
+			y = y + number;
+			x = x + number;
 		} else if (direction == false) {
-			x = x - 7;
-			y = y + 7;
+			x = x - number;
+			y = y + number;
 		}
 
 	}

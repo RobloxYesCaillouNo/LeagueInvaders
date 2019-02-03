@@ -8,21 +8,24 @@ public class ObjectManager {
 	ArrayList<Alien> alienlist = new ArrayList<Alien>();
 	long enemyTimer = 0;
 	int enemySpawnTime = 1000;
-
+	int score = 0;
 	public ObjectManager(Rocketship rocketship) {
 		this.rocketship = rocketship;
 
 	}
-
+	public int getScore() {
+		return score;
+	}
 	public void update() {
 		rocketship.update();
+		
 		for (int i = 0; i < projlist.size(); i++) {
 			projlist.get(i).update();
 
 		}
 		for (int i = 0; i < alienlist.size(); i++) {
 			alienlist.get(i).update();
-
+			getScore();
 		}
 	}
 
@@ -52,20 +55,6 @@ public class ObjectManager {
 		}
 	}
 
-	public void purgeObjects() {
-		for (int i = 0; i < alienlist.size(); i++) {
-			if (alienlist.get(i).isAlive == false) {
-				alienlist.remove(i);
-			}
-
-		}
-		for (int i = 0; i < projlist.size(); i++) {
-			if (projlist.get(i).isAlive == false) {
-				projlist.remove(i);
-			}
-		}
-	}
-
 	public void checkCollision() {
 		for (Alien a : alienlist) {
 
@@ -75,17 +64,34 @@ public class ObjectManager {
 
 			}
 		}
-			for (int i = 0; i < alienlist.size(); i++) {
-				for (int j = 0; j < projlist.size(); j++) {
-					if (alienlist.get(i).collisionBox.intersects(projlist.get(i).collisionBox)) {
-						alienlist.get(i).isAlive = false;
-						projlist.get(i).isAlive = false;
 
-					}
+		for (int i = 0; i < alienlist.size(); i++) {
+			for (int j = 0; j < projlist.size(); j++) {
+				if (alienlist.get(i).collisionBox.intersects(projlist.get(j).collisionBox)) {
+					alienlist.get(i).isAlive = false;
+					projlist.get(j).isAlive = false;
+					score++;
 				}
 			}
-		
+		}
 
+	}
+
+	
+	public void purgeObjects() {
+		for (int i = 0; i < alienlist.size(); i++) {
+			if (alienlist.get(i).isAlive == false) {
+				alienlist.remove(i);
+
+			}
+
+		}
+		for (int i = 0; i < projlist.size(); i++) {
+			if (projlist.get(i).isAlive == false) {
+				projlist.remove(i);
+
+			}
+		}
 	}
 
 }

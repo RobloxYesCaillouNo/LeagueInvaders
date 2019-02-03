@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -39,8 +40,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void updateGameState() {
 		objectmanager.update();
 		objectmanager.manageEnemies();
-		//objectmanager.purgeObjects();
 		objectmanager.checkCollision();
+		objectmanager.purgeObjects();
+		if (rocketship.isAlive == false) {
+			currentState++;
+		}
 	}
 
 	public void updateEndState() {
@@ -72,9 +76,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		g.drawString("Game Over", 113, 200);
 		g.setFont(enemyFont);
-		g.drawString("You killed 0 enemies", 120, 350);
+		g.drawString("You killed 1 enemies", 120, 350);
 		g.setFont(retryFont);
 		g.drawString("Press ENTER to restart", 103, 505);
+		
 
 	}
 
@@ -107,15 +112,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("key typed");
+		//System.out.println("key typed");
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println(e.getKeyCode());
+		//System.out.println(e.getKeyCode());
+		if(currentState == MENU_STATE) {
+			if (e.getKeyCode() == 32) {
+				JOptionPane.showMessageDialog(null, "Use arrow keys to move. Press SPACE to fire. Try not to die");
+			}
+		}
 		if (e.getKeyCode() == 10) {
-
+		
 			if (currentState == END_STATE) {
 				currentState = MENU_STATE;
 			} else {
@@ -134,7 +144,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("key released");
+		//System.out.println("key released");
 	}
 
 }
