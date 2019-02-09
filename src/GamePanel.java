@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
+	int score;
 	int currentState = MENU_STATE;
 	Font titleFont = new Font("Roboto", Font.BOLD, 48);
 	Font enterFont = new Font("Arial", Font.ITALIC, 28);
@@ -48,7 +49,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void updateEndState() {
-
+		
 	}
 
 	public void drawMenuState(Graphics g) {
@@ -76,7 +77,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		g.drawString("Game Over", 113, 200);
 		g.setFont(enemyFont);
-		g.drawString("You killed 1 enemies", 120, 350);
+		g.drawString("You killed "+score +" enemies", 120, 350);
+		
 		g.setFont(retryFont);
 		g.drawString("Press ENTER to restart", 103, 505);
 		

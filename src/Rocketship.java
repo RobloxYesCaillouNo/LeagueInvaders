@@ -8,7 +8,7 @@ public class Rocketship extends GameObject {
 	public Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
-		speed = 5;
+		speed = 10;
 	}
 
 	public void update() {
