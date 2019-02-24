@@ -15,6 +15,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer = new Timer(1000 / 60, this);
 	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
 	ObjectManager objectmanager = new ObjectManager(rocketship);
+
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
@@ -44,12 +45,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		objectmanager.checkCollision();
 		objectmanager.purgeObjects();
 		if (rocketship.isAlive == false) {
-			currentState++;
+			currentState = END_STATE;
 		}
 	}
 
 	public void updateEndState() {
-		
+
 	}
 
 	public void drawMenuState(Graphics g) {
@@ -77,11 +78,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		g.drawString("Game Over", 113, 200);
 		g.setFont(enemyFont);
-		g.drawString("You killed "+score +" enemies", 120, 350);
-		
+		g.drawString("You killed " + objectmanager.getScore() + " enemies", 120, 350);
+
 		g.setFont(retryFont);
 		g.drawString("Press ENTER to restart", 103, 505);
-		
 
 	}
 
@@ -114,26 +114,39 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		//System.out.println("key typed");
+		// System.out.println("key typed");
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		//System.out.println(e.getKeyCode());
-		if(currentState == MENU_STATE) {
+		System.out.println(e.getKeyCode());
+
+		if (currentState == MENU_STATE) {
 			if (e.getKeyCode() == 32) {
 				JOptionPane.showMessageDialog(null, "Use arrow keys to move. Press SPACE to fire. Try not to die");
 			}
+
 		}
 		if (e.getKeyCode() == 10) {
-		
-			if (currentState == END_STATE) {
+			System.out.println("enter pressed");
+
+			if (currentState > END_STATE) {
+				System.out.println("end state pressed");
 				currentState = MENU_STATE;
-			} else {
-				currentState++;
+
 			}
-		} else if (e.getKeyCode() == 37) {
+			if (currentState == END_STATE) {
+				Rocketship rocketship = new Rocketship(250, 700, 50, 50);
+				ObjectManager objectmanager = new ObjectManager(rocketship);
+
+			}
+
+			currentState++;
+
+		}
+
+		else if (e.getKeyCode() == 37) {
 			rocketship.x -= rocketship.speed;
 
 		} else if (e.getKeyCode() == 39) {
@@ -141,12 +154,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		} else if (e.getKeyCode() == 32) {
 			objectmanager.addProjectile(new Projectile(rocketship.x, rocketship.y, 10, 10));
 		}
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		//System.out.println("key released");
+		// System.out.println("key released");
 	}
 
 }

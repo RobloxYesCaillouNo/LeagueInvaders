@@ -16,9 +16,7 @@ public class ObjectManager {
 	public int getScore() {
 		return score;
 	}
-	public void setScore(int scoree) {
-		score = scoree;
-	}
+
 	public void update() {
 		rocketship.update();
 		
@@ -29,7 +27,7 @@ public class ObjectManager {
 		for (int i = 0; i < alienlist.size(); i++) {
 			alienlist.get(i).update();
 			
-		this.setScore(i);
+		
 		}
 	}
 
@@ -65,6 +63,7 @@ public class ObjectManager {
 			if (rocketship.collisionBox.intersects(a.collisionBox)) {
 
 				rocketship.isAlive = false;
+				
 
 			}
 		}
@@ -74,7 +73,10 @@ public class ObjectManager {
 				if (alienlist.get(i).collisionBox.intersects(projlist.get(j).collisionBox)) {
 					alienlist.get(i).isAlive = false;
 					projlist.get(j).isAlive = false;
-					this.score = score+1;
+					
+					score = score+1;
+					
+					
 				}
 			}
 		}
