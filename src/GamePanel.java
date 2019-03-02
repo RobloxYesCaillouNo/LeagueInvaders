@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
 			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
-			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png")); 
+			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
 			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
 
 		} catch (IOException e) {
@@ -132,31 +132,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-	
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println(e.getKeyCode());
 
 		if (e.getKeyCode() == 10) {
-	
+
 			currentState++;
 			if (currentState >= END_STATE) {
-				System.out.println("end state pressed");
 				currentState = MENU_STATE;
 				rocketship = new Rocketship(250, 700, 50, 50);
 				objectmanager = new ObjectManager(rocketship);
-				System.out.println("reseted");
 			}
 
 			else if (currentState == MENU_STATE) {
 				if (e.getKeyCode() == 32) {
 					JOptionPane.showMessageDialog(null, "Use arrow keys to move. Press SPACE to fire. Try not to die");
 				}
-
-			
 
 			}
 
