@@ -8,7 +8,7 @@ public class LeagueInvaders {
 	JFrame window = new JFrame();
 
 	final static int WIDTH = 500;
-	final int HEIGHT = 800;
+	final static int HEIGHT = 800;
 	GamePanel gamePanel = new GamePanel();
 
 	public static void main(String[] args) {

@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -15,6 +18,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer = new Timer(1000 / 60, this);
 	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
 	ObjectManager objectmanager = new ObjectManager(rocketship);
+
+	public static BufferedImage alienImg;
+
+	public static BufferedImage rocketImg;
+
+	public static BufferedImage bulletImg;
+
+	public static BufferedImage spaceImg;
 
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
@@ -29,6 +40,22 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font retryFont = new Font("Arial", Font.ITALIC, 28);
 
 	public GamePanel() {
+		try {
+
+			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+
+			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+
+			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+
+			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
 	}
 
 	public void startGame() {
@@ -66,8 +93,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawGameState(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 500, 800);
+		g.drawImage(spaceImg, 0,0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT , null);
 		objectmanager.draw(g);
 	}
 
@@ -122,27 +148,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		System.out.println(e.getKeyCode());
 
-		if (currentState == MENU_STATE) {
-			if (e.getKeyCode() == 32) {
-				JOptionPane.showMessageDialog(null, "Use arrow keys to move. Press SPACE to fire. Try not to die");
-			}
-
-		}
 		if (e.getKeyCode() == 10) {
-			System.out.println("enter pressed");
-
-			if (currentState > END_STATE) {
+			// System.out.println("enter pressed");
+			currentState++;
+			if (currentState >= END_STATE) {
 				System.out.println("end state pressed");
 				currentState = MENU_STATE;
-
-			}
-			if (currentState == END_STATE) {
-				Rocketship rocketship = new Rocketship(250, 700, 50, 50);
-				ObjectManager objectmanager = new ObjectManager(rocketship);
-				
+				rocketship = new Rocketship(250, 700, 50, 50);
+				objectmanager = new ObjectManager(rocketship);
+				System.out.println("reseted");
 			}
 
-			currentState++;
+			else if (currentState == MENU_STATE) {
+				if (e.getKeyCode() == 32) {
+					JOptionPane.showMessageDialog(null, "Use arrow keys to move. Press SPACE to fire. Try not to die");
+				}
+
+				// currentState++;
+				System.out.println("menustate");
+
+			}
 
 		}
 
