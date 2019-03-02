@@ -18,15 +18,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer = new Timer(1000 / 60, this);
 	Rocketship rocketship = new Rocketship(250, 700, 50, 50);
 	ObjectManager objectmanager = new ObjectManager(rocketship);
-
 	public static BufferedImage alienImg;
-
 	public static BufferedImage rocketImg;
-
 	public static BufferedImage bulletImg;
-
 	public static BufferedImage spaceImg;
-
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
@@ -43,11 +38,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		try {
 
 			alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
-
 			rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
-
-			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
-
+			bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png")); 
 			spaceImg = ImageIO.read(this.getClass().getResourceAsStream("space.png"));
 
 		} catch (IOException e) {
@@ -93,7 +85,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void drawGameState(Graphics g) {
-		g.drawImage(spaceImg, 0,0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT , null);
+		g.drawImage(spaceImg, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 		objectmanager.draw(g);
 	}
 
@@ -140,7 +132,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		// System.out.println("key typed");
+	
 	}
 
 	@Override
@@ -149,7 +141,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		System.out.println(e.getKeyCode());
 
 		if (e.getKeyCode() == 10) {
-			// System.out.println("enter pressed");
+	
 			currentState++;
 			if (currentState >= END_STATE) {
 				System.out.println("end state pressed");
@@ -164,8 +156,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 					JOptionPane.showMessageDialog(null, "Use arrow keys to move. Press SPACE to fire. Try not to die");
 				}
 
-				// currentState++;
-				System.out.println("menustate");
+			
 
 			}
 
@@ -185,7 +176,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		// System.out.println("key released");
 	}
 
 }
